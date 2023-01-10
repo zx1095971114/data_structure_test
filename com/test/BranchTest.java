@@ -1,4 +1,4 @@
-package com.test.com.test;
+package com.test;
 
 /**
  * @projectName: data-structure-test
