@@ -2,19 +2,20 @@ package com.test;
 
 import com.list.List;
 import com.listImp.ArrayList;
+import com.listImp.LinkedList;
 
 /**
  * @projectName: data-structure-test
  * @package: com.test
- * @className: ArrayListTest
+ * @className: ListTest
  * @author: Zhou xiang
- * @description: 测试顺序表 int[] a = new int[]{1, 2, 4, 2, 3, 6};为存入的数据
+ * @description: 测试线性表 int[] a = new int[]{1, 2, 4, 2, 3, 6};为存入的数据
  * @date: 2023/1/10 21:51
  * @version: 1.0
  */
-public class ArrayListTest {
+public class ListTest {
     public static void main(String[] args) throws Exception {
-        List arrayList = new ArrayList();
+        List arrayList = new LinkedList();
         arrayList.printList();
 
         if(arrayList.isEmpty()){

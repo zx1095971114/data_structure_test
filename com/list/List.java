@@ -40,7 +40,7 @@ public interface List {
 
     /**
      * @param o: 查找的值
-     * @return int[] 查到值的位序组成的数组
+     * @return int[] 查到值的位序组成的数组，若该数组只有一个0，则说明没有找到
      * @author ZhouXiang
      * @description 按值查找
      * @exception 无
