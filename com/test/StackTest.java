@@ -2,6 +2,7 @@ package com.test;
 
 import com.list.Stack;
 import com.listImp.ArrayStack;
+import com.listImp.LinkedStack;
 
 /**
  * @projectName: data-structure-test
@@ -14,7 +15,9 @@ import com.listImp.ArrayStack;
  */
 public class StackTest {
     public static void main(String[] args) throws Exception {
-        Stack stack = new ArrayStack(4);
+        //顺序栈测试时启用注释内容
+//        Stack stack = new ArrayStack(4);
+        Stack stack = new LinkedStack(); //顺序栈测试时将其注释
         stack.printStack();
         if(stack.isEmpty()){
             System.out.println("判空测试，空通过");
@@ -24,9 +27,10 @@ public class StackTest {
         stack.push(2);
         stack.push(3);
         stack.push(4);
-        if(!stack.push(5)){
-            System.out.println("栈满插入测试通过");
-        }
+
+//        if(!stack.push(5)){
+//            System.out.println("栈满插入测试通过");
+//        }
         if(!stack.isEmpty()){
             System.out.println("判空测试，非空通过");
         }
