@@ -44,4 +44,43 @@ public class StackApplyImp implements StackApply {
                 (a == '[' && b == ']') ||
                 (a == '{' && b == '}');
     }
+
+    @Override
+    public String mid2Behind(String mid) throws Exception{
+        StringBuffer behind = new StringBuffer("");
+        Stack symbolStack = new LinkedStack();
+        for (int i = 0; i < mid.length(); i++){
+            char now = mid.charAt(i);
+            Symbol symbol = Symbol.getSymbol(now);
+            if(symbol == null){
+                behind.append(now);
+            } else if (symbol.equals(Symbol.LP)) {
+                symbolStack.push(symbol);
+            } else if (symbol.equals(Symbol.RP)) {
+                Symbol s = (Symbol) symbolStack.pop();
+                while (!s.equals(Symbol.LP)){
+                    behind.append(s.getSymbol());
+                    s = (Symbol) symbolStack.pop();
+                }
+            } else {
+                Symbol s = null;
+                while (!symbolStack.isEmpty()){
+                    s = (Symbol) symbolStack.getTop();
+                    if(s.getPriority() >= symbol.getPriority()){
+                        symbolStack.pop();
+                        behind.append(s.getSymbol());
+                    } else {
+                        symbolStack.push(symbol);
+                        break;
+                    }
+                }
+            }
+        }
+
+        while (!symbolStack.isEmpty()){
+            Symbol s = (Symbol) symbolStack.pop();
+            behind.append(s.getSymbol());
+        }
+        return behind.toString();
+    }
 }
