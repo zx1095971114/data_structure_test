@@ -25,10 +25,18 @@ public class StackApplyTest {
             System.out.println("括号匹配2通过");
         }
 
-        String s = "((15 / (7 - (1 + 1))) * 3) - (2 + (1 + 1))";
+        String s = "((5 / (7 - (1 + 1))) * 3) - (2 + (1 + 1))";
         System.out.println(stackApply.mid2Behind(s));
-        if(stackApply.mid2Behind(s).equals("15  7  1  1+-/  3*  2  1  1++")){
+        if(stackApply.mid2Behind(s).equals("5  7  1  1+-/  3*  2  1  1++-")){
             System.out.println("中缀表达式转后缀表达式测试通过");
         }
+
+        int a = ((5 / (7 - (1 + 1))) * 3) - (2 + (1 + 1));
+        System.out.println("a:" + a);
+        System.out.println("calculate:" + stackApply.eval(s));
+        if(stackApply.eval(s) == a){
+            System.out.println("计算中缀表达式通过");
+        }
+
     }
 }

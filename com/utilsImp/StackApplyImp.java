@@ -49,6 +49,7 @@ public class StackApplyImp implements StackApply {
     public String mid2Behind(String mid) throws Exception{
         StringBuffer behind = new StringBuffer("");
         Stack symbolStack = new LinkedStack();
+
         for (int i = 0; i < mid.length(); i++){
             char now = mid.charAt(i);
             Symbol symbol = Symbol.getSymbol(now);
@@ -70,10 +71,10 @@ public class StackApplyImp implements StackApply {
                         symbolStack.pop();
                         behind.append(s.getSymbol());
                     } else {
-                        symbolStack.push(symbol);
                         break;
                     }
                 }
+                symbolStack.push(symbol);
             }
         }
 
@@ -82,5 +83,58 @@ public class StackApplyImp implements StackApply {
             behind.append(s.getSymbol());
         }
         return behind.toString();
+    }
+
+    @Override
+    public int eval(String mid) throws Exception {
+        String target = mid.replaceAll("\\s*", "");
+        Stack symbolStack = new LinkedStack();
+        Stack numStack = new LinkedStack();
+
+        for (int i = 0; i < target.length(); i++){
+            char now = target.charAt(i);
+            Symbol symbol = Symbol.getSymbol(now);
+
+            if(symbol != null && symbol.equals(Symbol.SUBTRACTION)){
+                int q = 0;
+            }
+
+            if(symbol == null){
+                numStack.push(now - '0');
+            } else if (symbol.equals(Symbol.LP)) {
+                symbolStack.push(symbol);
+            } else if (symbol.equals(Symbol.RP)) {
+                Symbol s = (Symbol) symbolStack.pop();
+                while (!s.equals(Symbol.LP)){
+                    int right = (int) numStack.pop();
+                    int left = (int) numStack.pop();
+                    numStack.push(s.calculate(left, right));
+                    s = (Symbol) symbolStack.pop();
+                }
+            } else {
+                Symbol s = null;
+                while (!symbolStack.isEmpty()){
+                    s = (Symbol) symbolStack.getTop();
+                    if(s.getPriority() >= symbol.getPriority()){
+                        int right = (int) numStack.pop();
+                        int left = (int) numStack.pop();
+                        numStack.push(s.calculate(left, right));
+                        symbolStack.pop();
+                    } else {
+                        break;
+                    }
+                }
+                symbolStack.push(symbol);
+            }
+        }
+
+        while (!symbolStack.isEmpty()){
+            Symbol s = (Symbol) symbolStack.pop();
+            int right = (int) numStack.pop();
+            int left = (int) numStack.pop();
+            numStack.push(s.calculate(left, right));
+        }
+
+        return (int) numStack.pop();
     }
 }

@@ -24,7 +24,16 @@ public interface StackApply {
      * @return String
      * @author ZhouXiang
      * @description 中缀表达式转为后缀表达式(不保证中缀表达式本身合法),只支持+, -, *, /, (, )
-     * @exception 无
+     * @exception 栈的pop，getTop
      */
     public String mid2Behind(String mid) throws Exception;
+
+    /**
+     * @param mid: 中缀表达式
+     * @return int 所求的值
+     * @author ZhouXiang
+     * @description 求给定中缀表达式的值,(暂时只支持个位的操作数，默认一次只读一个字符)
+     * @exception 栈的pop，getTop
+     */
+    public int eval(String mid) throws Exception;
 }

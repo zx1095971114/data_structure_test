@@ -53,4 +53,27 @@ public enum Symbol {
 
         return null;
     }
+
+    /**
+     * @param left: 左操作数
+     * @param right: 右操作数
+     * @return int 计算结果
+     * @author ZhouXiang
+     * @description 二元运算符的计算
+     * @exception 非二元运算符不能使用该方法
+     */
+    public int calculate(int left, int right) throws Exception{
+        switch (this){
+            case ADD:
+                return left + right;
+            case SUBTRACTION:
+                return left - right;
+            case MULTIPLE:
+                return left * right;
+            case DIVISION:
+                return left / right;
+            default:
+                throw new Exception("非二院操作符无法计算");
+        }
+    }
 }
