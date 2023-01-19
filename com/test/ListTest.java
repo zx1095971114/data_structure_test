@@ -22,8 +22,6 @@ public class ListTest {
             System.out.println("判空测试通过");
         }
 
-
-
         arrayList.add(1, 2);
         arrayList.add(2, 2);
         arrayList.add(3, 6);

@@ -73,7 +73,7 @@ public enum Symbol {
             case DIVISION:
                 return left / right;
             default:
-                throw new Exception("非二院操作符无法计算");
+                throw new Exception("非二元操作符无法计算");
         }
     }
 }
