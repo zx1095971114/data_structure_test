@@ -40,9 +40,9 @@ public class IteratorImp implements Iterator {
         System.out.println("集合中的元素个数有" + this.datas.length + "个");
         System.out.println("开始打印集合元素");
         for (Object data : datas) {
-            System.out.println(data);
+            System.out.print(data + " ");
         }
-        System.out.println("集合元素打印完毕");
+        System.out.println("\n集合元素打印完毕");
         System.out.println();
     }
 }

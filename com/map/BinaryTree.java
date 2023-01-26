@@ -13,7 +13,7 @@ import java.util.List;
  * @date: 2023/1/21 23:10
  * @version: 1.0
  */
-public interface BinaryTree extends Tree {
+public interface BinaryTree {
     /**
      * @param order: 0:前序序列，1:中序序列，2:后序序列
      * @return Object 获取的序列
