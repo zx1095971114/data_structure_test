@@ -70,5 +70,20 @@ public class TableGraphTest {
         for(Map.Entry entry: entries){
             System.out.print(entry.getValue().toString() + ", " + entry.getKey().toString() + "\n");
         }
+
+        Graph topo = new TableGraph();
+        topo.insertVertex("a");
+        topo.insertVertex("b");
+        topo.insertVertex("c");
+        topo.insertVertex("d");
+
+        topo.addEdge(0, 1, 0);
+        topo.addEdge(0, 3, 0);
+        topo.addEdge(1, 2, 0);
+        topo.addEdge(3, 2, 0);
+
+        it = new IteratorImp(topo.topologicalSort().toArray());
+        System.out.println("新图的拓扑序列为");
+        it.print();
     }
 }

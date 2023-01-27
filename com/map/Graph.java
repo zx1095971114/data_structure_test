@@ -27,7 +27,7 @@ public interface Graph {
      * @param x: 起始点的下标
      * @return Map 获取的点下标集合,注意：返回的是(end，start)，因为map要求key必须不同
      * @author ZhouXiang
-     * @description 获取所有与x邻接的边,(要以x为弧头)
+     * @description 获取所有与x邻接的边,(要以x为弧尾)
      * @exception getVex中x对应的结点不存在
      */
     public Map neighbors(int x) throws Exception;
@@ -109,5 +109,14 @@ public interface Graph {
      * @exception 该序号对应的结点不在图里
      */
     public List dfsTravel(int x) throws Exception;
+
+    /**
+     * @param :
+     * @return List 输出的拓扑序列
+     * @author ZhouXiang
+     * @description 对图尝试拓扑排序，输出拓扑序列
+     * @exception 存在环则抛异常
+     */
+    public List topologicalSort();
 
 }

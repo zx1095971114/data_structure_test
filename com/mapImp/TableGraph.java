@@ -70,15 +70,27 @@ public class TableGraph implements Graph {
             if(vex.getId() == x){
                 vexNode = vex;
             }else {
+                //改变点的id
+                if(vex.getId() > x){
+                    vex.id++;
+                }
+
+                //操作点后链的边表
                 ArcNode arcNode = vex.getArc();
                 ArcNode pre = null;
+                if(arcNode == null){
+                    break;
+                }
+
                 if(arcNode.getEnd() == x){
                     vex.setArc(arcNode.getArc());
                 }else {
                     while (arcNode != null){
                         if(arcNode.getEnd() == x){
                             pre.setArc(arcNode.getArc());
-                            break;
+                        }
+                        if(arcNode.getEnd() > x){
+                            arcNode.end--;
                         }
                         pre = arcNode;
                         arcNode = arcNode.getArc();
@@ -240,6 +252,53 @@ public class TableGraph implements Graph {
         return result;
     }
 
+    @Override
+    public List topologicalSort() {
+        List topological = new ArrayList<>();
+        int[] inDegree = new int[vexes.size()];
+        for(int i = 0; i < vexes.size(); i++){
+            inDegree[i] = this.getInDegree(i);
+        }
+        Stack<Integer> stack = new Stack<>(); //存度为0且未处理的结点序号
+        for(int i = 0; i < vexes.size(); i++){
+            if(inDegree[i] == 0){
+                stack.push(i);
+            }
+        }
+
+        while (!stack.empty()){
+            int digit = stack.pop();
+            topological.add(vexes.get(digit).getData());
+            ArcNode arcNode = vexes.get(digit).getArc();
+            while (arcNode != null){
+                inDegree[arcNode.getEnd()]--;
+                if(inDegree[arcNode.getEnd()] == 0){
+                    stack.push(arcNode.getEnd());
+                }
+                arcNode = arcNode.getArc();
+            }
+        }
+
+        return topological;
+    }
+
+    //获取序号为x的结点的入度
+    private int getInDegree(int x){
+        int count = 0;
+        for(int i = 0; i < vexes.size(); i++){
+            ArcNode arcNode = vexes.get(i).getArc();
+            while (arcNode != null){
+                if(arcNode.getEnd() == x){
+                    count++;
+                    break;
+                }
+                arcNode = arcNode.getArc();
+            }
+        }
+
+        return count;
+    }
+
     //从vex结点bfs一个联通分支
     private List bfs(VexNode vex) throws Exception {
         Queue<VexNode> queue = new LinkedList<>();
@@ -285,7 +344,7 @@ public class TableGraph implements Graph {
     class VexNode{
         private Object data; //结点信息
         private ArcNode arc; //以该点为弧头的第一条邻接边
-        private final int id; //点的id信息，作为主键唯一标识该点
+        private int id; //点的id信息，作为主键唯一标识该点
         private boolean visited; //在遍历时看是否访问过
 
         public VexNode(Object data, int id) {
