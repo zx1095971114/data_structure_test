@@ -43,5 +43,19 @@ public class ListTest {
         System.out.println("表长获取测试，获取的表长为" + arrayList.getLength());
         arrayList.printList();
 
+        ArrayList l = new ArrayList();
+        l.add(1,5);
+        l.add(2,4);
+        l.add(3,3);
+        l.add(4,2);
+        l.add(5,1);
+
+        l.printList();
+        System.out.println("\n折半查找测试开始");
+        System.out.println("2的位置" + l.halfSearch(2) + "\n");
+
+        if(l.halfSearch(6) == -1){
+            System.out.println("折半查找通过");
+        }
     }
 }

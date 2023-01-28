@@ -82,9 +82,8 @@ public class ArrayList implements List {
                 num++;
             }
         }
-        int[] realResult = Arrays.copyOfRange(result,0, num);
 
-        return realResult;
+        return Arrays.copyOfRange(result,0, num);
     }
 
     @Override
@@ -103,16 +102,49 @@ public class ArrayList implements List {
 
     @Override
     public boolean isEmpty() {
-        if(this.length == 0){
-            return true;
-        }else {
-            return false;
-        }
+        return this.length == 0;
 
     }
 
     @Override
     public int getLength() {
         return this.length;
+    }
+
+    /**
+     * @param o: 要找的元素
+     * @return int 成功则返回其位序，失败返回-1
+     * @author ZhouXiang
+     * @description 折半查找(未考虑非有序的输入),只用于有序的整数序列
+     * @exception get()导致
+     */
+    public int halfSearch(Object o) throws Exception {
+        int low = 1;
+        int high = this.length;
+        int mid = (low + high) / 2;
+        boolean isAsc = (int) this.get(high) >= (int) this.get(low);
+        while (low <= high){
+            if(isAsc){
+                if(this.get(mid) == o){
+                    return mid;
+                } else if ((int)get(mid) > (int)o) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }else {
+                if(this.get(mid) == o){
+                    return mid;
+                } else if ((int)get(mid) > (int)o) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
+
+            mid = (low + high) / 2;
+        }
+
+        return -1;
     }
 }
