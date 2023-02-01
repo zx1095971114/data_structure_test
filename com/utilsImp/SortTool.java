@@ -1,5 +1,7 @@
 package com.utilsImp;
 
+import com.map.Heap;
+import com.mapImp.ArrayHeap;
 import com.utils.Sort;
 
 /**
@@ -125,5 +127,29 @@ public class SortTool implements Sort {
         nums[low] = pivot;
 
         return low;
+    }
+
+    @Override
+    public void selectSort(int[] nums) {
+        for(int i = 0; i < nums.length; i++){
+            int min = i;
+            for(int j = min + 1; j < nums.length; j++){
+                if(nums[j] < nums[min]){
+                    min = j;
+                }
+            }
+            int temp = nums[min];
+            nums[min] = nums[i];
+            nums[i] = temp;
+        }
+    }
+
+    @Override
+    public void heapSort(int[] nums) {
+        Heap heap = new ArrayHeap(nums,0);
+//        nums = heap.sort();
+        for(int i = 0; i < nums.length; i++){
+            nums[i] = heap.sort()[i];
+        }
     }
 }

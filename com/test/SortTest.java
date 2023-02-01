@@ -21,12 +21,16 @@ public class SortTest {
         int[] nums2 = nums0.clone();
         int[] nums3 = nums0.clone();
         int[] nums4 = nums0.clone();
+        int[] nums5 = nums0.clone();
+        int[] nums6 = nums0.clone();
 
         test(nums0, 0);
         test(nums1, 1);
         test(nums2, 2);
         test(nums3, 3);
         test(nums4, 4);
+        test(nums5, 5);
+        test(nums6, 6);
     }
 
     private static void test(int[] nums, int id) throws Exception {

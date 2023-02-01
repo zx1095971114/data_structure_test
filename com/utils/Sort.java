@@ -38,6 +38,12 @@ public interface Sort {
             case 4:
                 sort.quickSort(nums,0,nums.length - 1);
                 break;
+            case 5:
+                sort.selectSort(nums);
+                break;
+            case 6:
+                sort.heapSort(nums);
+                break;
             default:
                 throw new Exception("不存在序号为" + id + "的排序算法");
         }
@@ -88,4 +94,22 @@ public interface Sort {
      * @exception 无
      */
     public void quickSort(int[] nums,int low, int high);
+
+    /**
+     * @param nums: 待排序的int序列
+     * @return void
+     * @author ZhouXiang
+     * @description 简单选择排序，排序结果是直接改变原数组，序号5
+     * @exception 无
+     */
+    public void selectSort(int[] nums);
+
+    /**
+     * @param nums: 待排序的int序列
+     * @return void
+     * @author ZhouXiang
+     * @description 简单选择排序，排序结果是直接改变原数组，序号5
+     * @exception 无
+     */
+    public void heapSort(int[] nums);
 }
