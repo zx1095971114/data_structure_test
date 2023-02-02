@@ -23,6 +23,7 @@ public class SortTest {
         int[] nums4 = nums0.clone();
         int[] nums5 = nums0.clone();
         int[] nums6 = nums0.clone();
+        int[] nums7 = nums0.clone();
 
         test(nums0, 0);
         test(nums1, 1);
@@ -31,6 +32,7 @@ public class SortTest {
         test(nums4, 4);
         test(nums5, 5);
         test(nums6, 6);
+        test(nums7, 7);
     }
 
     private static void test(int[] nums, int id) throws Exception {

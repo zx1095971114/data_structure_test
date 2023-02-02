@@ -44,6 +44,9 @@ public interface Sort {
             case 6:
                 sort.heapSort(nums);
                 break;
+            case 7:
+                sort.mergeSort(nums, 0, nums.length - 1);
+                break;
             default:
                 throw new Exception("不存在序号为" + id + "的排序算法");
         }
@@ -108,8 +111,19 @@ public interface Sort {
      * @param nums: 待排序的int序列
      * @return void
      * @author ZhouXiang
-     * @description 简单选择排序，排序结果是直接改变原数组，序号5
+     * @description 堆排序，排序结果是直接改变原数组，序号6
      * @exception 无
      */
     public void heapSort(int[] nums);
+
+    /**
+     * @param nums: 待排序的int序列
+     * @param low: 归并排序的起始位序号
+     * @param high: 归并排序结束位序号
+     * @return void
+     * @author ZhouXiang
+     * @description 归并排序，排序结果是直接改变原数组，序号7
+     * @exception 无
+     */
+    public void mergeSort(int[] nums, int low, int high);
 }

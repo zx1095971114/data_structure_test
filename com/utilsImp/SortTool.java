@@ -4,6 +4,8 @@ import com.map.Heap;
 import com.mapImp.ArrayHeap;
 import com.utils.Sort;
 
+import java.util.Arrays;
+
 /**
  * @projectName: data-structure-test
  * @package: com.utilsImp
@@ -150,6 +152,49 @@ public class SortTool implements Sort {
 //        nums = heap.sort();
         for(int i = 0; i < nums.length; i++){
             nums[i] = heap.sort()[i];
+        }
+    }
+
+    @Override
+    public void mergeSort(int[] nums, int low, int high) {
+        if(low < high){
+            int mid = (low + high) / 2;
+            mergeSort(nums, low, mid);
+            mergeSort(nums, mid + 1, high);
+            merge(nums, low, mid, high);
+        }
+
+    }
+
+    //归并两个有序序列,low为第一个的起点，mid为第一个的终点，
+    //mid + 1为第二个的起点，high为第二个的终点
+    private void merge(int[] nums, int low, int mid, int high){
+        int[] temp = Arrays.copyOf(nums, nums.length);
+        int i = low;
+        int j = mid + 1;
+        int k = low; //指向原数组(用于存放排好的数据)
+
+        while (i <= mid && j <= high){
+            if(temp[i] <= temp[j]){
+                nums[k] = temp[i];
+                i++;
+            }else {
+                nums[k] = temp[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i <= mid){
+            nums[k] = temp[i];
+            i++;
+            k++;
+        }
+
+        while (j <= high){
+            nums[k] = temp[j];
+            j++;
+            k++;
         }
     }
 }
